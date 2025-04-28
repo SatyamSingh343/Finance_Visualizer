@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { ThemeProvider } from '@/components/layout/ThemeProvider';
 import { SiteHeader } from '@/components/layout/SiteHeader';
-import { FinanceProvider, useFinance } from '@/context/FinanceContext';
+import { FinanceProvider } from '@/context/FinanceContext';
 import { MonthSelector } from '@/components/dashboard/MonthSelector';
 import { BudgetList } from '@/components/budget/BudgetList';
 import { BudgetForm } from '@/components/budget/BudgetForm';
@@ -12,16 +12,24 @@ import { PlusIcon } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { BudgetComparisonChart } from '@/components/dashboard/BudgetComparisonChart';
 
+// Define a Budget type
+interface Budget {
+  id: number;
+  name: string;
+  amount: number;
+  // You can add more fields if your Budget object has them
+}
+
 function BudgetPage() {
   const [open, setOpen] = useState(false);
-  const [editingBudget, setEditingBudget] = useState(null);
+  const [editingBudget, setEditingBudget] = useState<Budget | null>(null); // <-- typed correctly
 
   const handleNewBudget = () => {
     setEditingBudget(null);
     setOpen(true);
   };
 
-  const handleEditBudget = (budget) => {
+  const handleEditBudget = (budget: Budget) => { // <-- typed correctly
     setEditingBudget(budget);
     setOpen(true);
   };
@@ -45,12 +53,12 @@ function BudgetPage() {
             </Button>
           </div>
         </div>
-        
+
         <div className="space-y-6">
           <BudgetComparisonChart />
           <BudgetList onEdit={handleEditBudget} />
         </div>
-        
+
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogContent className="sm:max-w-[425px]">
             <DialogHeader>
