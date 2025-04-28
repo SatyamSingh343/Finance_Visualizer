@@ -29,7 +29,10 @@ function Dashboard() {
           </h1>
           <div className="flex items-center gap-4">
             <MonthSelector />
-            <Button onClick={() => setOpen(true)} className="flex items-center gap-2 bg-primary hover:bg-primary/90">
+            <Button 
+              onClick={() => setOpen(true)} 
+              className="flex items-center gap-2 bg-primary hover:bg-primary/90"
+            >
               <PlusIcon className="h-4 w-4" />
               Add Transaction
             </Button>
@@ -49,7 +52,7 @@ function Dashboard() {
               <RecentTransactions limit={5} compact />
             </div>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="card-hover rounded-xl bg-card shadow-lg">
               <CategoryDistributionChart />
@@ -58,7 +61,7 @@ function Dashboard() {
               <BudgetComparisonChart />
             </div>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="card-hover rounded-xl bg-card shadow-lg">
               <RecentTransactions limit={10} />
@@ -69,12 +72,16 @@ function Dashboard() {
           </div>
         </div>
 
+        {/* Dialog for Add Transaction */}
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogContent className="sm:max-w-[425px]">
             <DialogHeader>
               <DialogTitle>Add Transaction</DialogTitle>
             </DialogHeader>
-            <TransactionForm onComplete={() => setOpen(false)} />
+            <TransactionForm 
+              transaction={null} 
+              onComplete={() => setOpen(false)} 
+            />
           </DialogContent>
         </Dialog>
       </main>
