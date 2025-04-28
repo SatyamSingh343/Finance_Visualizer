@@ -1,4 +1,5 @@
 Finance Visualizer
+
 Finance Visualizer is a web application built with Next.js, TypeScript, and TailwindCSS that helps users visualize financial data interactively. It leverages reusable components and a modular structure for scalability and ease of maintenance.
 
 Features
